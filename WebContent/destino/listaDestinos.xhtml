@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<h:form>
+<h:outputLabel value="DESTINOS" />
+<br/>
+<h:commandLink action="#{destinoMB.inicializarNuevo()}">
+<h:graphicImage value="/imagenes/nuevo.png" />
+</h:commandLink>
+
+<br/>
+<h:dataTable value="#{destinoMB.destino}" var="fila" border="1">
+
+<h:column>
+<f:facet name="header">Editar</f:facet>
+<h:commandLink action="actualizarDestino">
+<h:graphicImage value="/imagenes/editar.png" />
+<f:setPropertyActionListener value="#{fila}" target="#{destinoMB.actualizarDestino}" />
+
+</h:commandLink>
+</h:column>
+
+<h:column>
+<f:facet name="header">Eliminar</f:facet>
+<h:commandLink action="#{destinoMB.eliminar()}">
+<h:graphicImage value="/imagenes/borrar.png" />
+<f:setPropertyActionListener value="#{fila}" target="#{destinoMB.eliminarDestino}" />
+</h:commandLink>
+</h:column>
+
+<h:column>
+<f:facet name="header">Id</f:facet>
+<h:outputLabel value="#{fila.id}" />
+</h:column>
+
+<h:column>
+<f:facet name="header">Nombres</f:facet>
+<h:outputLabel value="#{fila.nombres}" />
+</h:column>
+
+<h:column>
+<f:facet name="header">Apellidos</f:facet>
+<h:outputLabel value="#{fila.apellidos}" />
+</h:column>
+
+<h:column>
+<f:facet name="header">Area</f:facet>
+<h:outputLabel value="#{fila.area}" />
+</h:column>
+
+<h:column>
+<f:facet name="header">Correo</f:facet>
+<h:outputLabel value="#{fila.correo}" />
+</h:column>
+
+
+
+
+</h:dataTable>
+
+
+</h:form>
+</body> 
+</html>
