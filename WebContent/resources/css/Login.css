@@ -1,0 +1,103 @@
+@charset "ISO-8859-1";
+
+@font-face {
+	font-family: 'Colonna MT';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Colonna MT'), local('ColonnaMT-Regular'),
+		url(../fonts/ColonnaMT.ttf) format('truetype');
+}
+
+* {
+	font-family: 'Verdana'; padding : 0;
+	margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background: #dedede !important;
+	height: 100%;
+	width: 100%;
+}
+
+.logo hr {
+	margin-top: 0;
+	margin-bottom: 0;
+	border: 2px solid #fff;
+	border-top: none;
+}
+
+.logo .title {
+	font-family: 'Colonna MT';
+	font-size: 7em;
+	margin: 7px;
+	color: #308e51;
+	line-height: 60px;
+}
+
+.logo .subtitle {
+	font-family: 'monospace';
+	font-size: 73px;
+	color: #fff;
+	line-height: 60px;
+}
+
+#main {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+#mainLogin {
+	display: flex;
+	align-items: center; height : 100%;
+	width: 100%;
+	height: 100%;
+}
+
+#mainLogin .logo {
+	width: 150px;
+}
+
+#mainLogin .card {
+	padding-top: 40px;
+	height: 500px;
+	width: 33%;
+	margin: auto;
+	background: #303030;
+	display: flex;
+	align-items: center;
+}
+
+#mainLogin form {
+	width: 100%;
+}
+
+#mainLogin table {
+	margin: auto;
+	width: 70%;
+}
+
+#mainLogin input {
+	background-color: #fff;
+	border: 1px solid #fff;
+	outline: 0;
+	box-shadow: none;
+	padding: 10px;
+	width: 100%;
+	margin: 25px 0 10px 0;
+	border-radius: 2px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #308e51 !important;
+    border-color: #308e51 !important;
+}

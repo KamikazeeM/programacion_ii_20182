@@ -5,15 +5,15 @@ import com.ubosque.edu.co.progll.dao.Implementacion.BaseDAO;
 
 public class BaseDelegado<T> {
 
-	private InterfazBaseDAOFachada destinoFachada;
+	private InterfazBaseDAOFachada fachada;
 
 	// constructor
-	public <T> BaseDelegado() {
-		destinoFachada = new BaseDAO<T>();		
+	public BaseDelegado() {
+		fachada = new BaseDAO<T>();		
 	}
 
-	public InterfazBaseDAOFachada getDestinoFachada() {
-		return destinoFachada;
+	public InterfazBaseDAOFachada getFachada() {
+		return fachada;
 	}
 
 }

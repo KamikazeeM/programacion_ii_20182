@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="main">
+		<link type="text/css" rel="stylesheet" href="resources/css/Login.css" />
+		<div id="mainLogin">
+			<div class="card">
+				<div class="logo">
+					<span class="title">BD</span>
+					<hr />
+					<span class="subtitle">Docs</span>
+				</div>
+
+				<h:form id="login">
+					<h:panelGrid columns="1">
+						<h:inputText id="email" value="#{loginMB.usuario.usuario}"
+							required="true" placeholder="Email">
+						</h:inputText>
+						<h:message for="email" id="messageEmail" />
+
+						<h:inputSecret id="senha" value="#{loginMB.usuario.contrasena}"
+							required="true" placeholder="Contraseña" />
+						<h:message for="senha" id="messageSenha" />
+
+						<h:commandButton styleClass="mt-3 btn btn-block btn-primary"
+							value="Login" action="#{loginMB.login()}" />
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

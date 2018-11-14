@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import com.ubosque.edu.co.progll.logica.DestinoLogica;;
+import com.ubosque.edu.co.progll.logica.UsuarioLogica;
 import com.ubosque.edu.co.progll.modelo.Usuario;
 
 @ManagedBean
@@ -23,17 +23,16 @@ public class LoginMB {
 	}
 	
 	public String login() {
-		System.out.println("Login");
 		
-		
-		boolean existe = new UsuarioDao().existe(this.usuario);
-		if(existe ) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		boolean existe = new UsuarioLogica().existe(this.getUsuario().getUsuario(), this.getUsuario().getContrasena());
+		if(existe) {
 			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
-			return "livro?faces-redirect=true";
+			return "listaDestinos?faces-redirect=true";
 		}
 		
 		context.getExternalContext().getFlash().setKeepMessages(true);
-		context.addMessage(null, new FacesMessage("Usuário não encontrado"));
+		context.addMessage(null, new FacesMessage("encontrado"));
 		
 		return "login?faces-redirect=true";
 	}

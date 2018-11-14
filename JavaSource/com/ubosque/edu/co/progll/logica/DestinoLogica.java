@@ -14,7 +14,7 @@ public class DestinoLogica {
 	//constructor
 	public DestinoLogica() {
 		delegado = new BaseDelegado<Destino>();
-		destinoFachada = delegado.getDestinoFachada();
+		destinoFachada = delegado.getFachada();
 	}
 
 	public boolean crearDestino(Destino destinoAInsertar) {
