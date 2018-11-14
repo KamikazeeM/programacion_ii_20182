@@ -10,9 +10,9 @@ import com.ubosque.edu.co.progll.util.HibernateUtilidad;
 
 public class BaseDAO<T> implements InterfazBaseDAOFachada<T> {
 
-	public <T> BaseDAO() {
+	public BaseDAO() {
 	}
-	
+
 	@Override
 	public boolean create(T modeloAInsertar) {
 		boolean r = false;
@@ -31,6 +31,7 @@ public class BaseDAO<T> implements InterfazBaseDAOFachada<T> {
 	@Override
 	public List<T> read(final Class<T> claseALeer) {
 		Session s = HibernateUtilidad.getSf().getCurrentSession();
+		s.beginTransaction();
 		Criteria crit = s.createCriteria(claseALeer);
 		return crit.list();
 	}
