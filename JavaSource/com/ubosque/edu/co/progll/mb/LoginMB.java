@@ -1,5 +1,6 @@
 package com.ubosque.edu.co.progll.mb;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +24,13 @@ public class LoginMB {
 	}
 	
 	public String login() {
-		
+		System.out.println("Joderrr");
 		FacesContext context = FacesContext.getCurrentInstance();
 		boolean existe = new UsuarioLogica().existe(this.getUsuario().getUsuario(), this.getUsuario().getContrasena());
 		if(existe) {
 			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
-			return "listaDestinos?faces-redirect=true";
-		}
+			return "index?faces-redirect=true";
+		}	
 		
 		context.getExternalContext().getFlash().setKeepMessages(true);
 		context.addMessage(null, new FacesMessage("encontrado"));

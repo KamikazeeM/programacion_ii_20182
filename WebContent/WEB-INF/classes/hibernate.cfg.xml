@@ -15,6 +15,10 @@
         <property name="current_session_context_class">thread</property>
         
         <mapping class="com.ubosque.edu.co.progll.modelo.Destino" />
+        <mapping class="com.ubosque.edu.co.progll.modelo.Permiso" />
+        <mapping class="com.ubosque.edu.co.progll.modelo.Rol" />
+        <mapping class="com.ubosque.edu.co.progll.modelo.RolPermiso" />
+        <mapping class="com.ubosque.edu.co.progll.modelo.Usuario" />
        
     </session-factory>
 </hibernate-configuration>

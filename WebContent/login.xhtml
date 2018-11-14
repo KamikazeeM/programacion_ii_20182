@@ -27,7 +27,8 @@
 						<h:message for="senha" id="messageSenha" />
 
 						<h:commandButton styleClass="mt-3 btn btn-block btn-primary"
-							value="Login" action="#{loginMB.login()}" />
+							value="Login" action="#{loginMB.login}" update="@form"
+							process="@form"/>
 					</h:panelGrid>
 				</h:form>
 			</div>

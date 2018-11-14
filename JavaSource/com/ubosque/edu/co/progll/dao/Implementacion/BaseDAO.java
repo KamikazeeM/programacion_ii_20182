@@ -30,10 +30,13 @@ public class BaseDAO<T> implements InterfazBaseDAOFachada<T> {
 
 	@Override
 	public List<T> read(final Class<T> claseALeer) {
+		List<T> r = null; 
 		Session s = HibernateUtilidad.getSf().getCurrentSession();
 		s.beginTransaction();
 		Criteria crit = s.createCriteria(claseALeer);
-		return crit.list();
+		r = crit.list();
+		s.getTransaction().commit();
+		return r;
 	}
 
 	@Override
