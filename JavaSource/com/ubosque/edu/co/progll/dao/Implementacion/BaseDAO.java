@@ -60,7 +60,7 @@ public class BaseDAO<T> implements InterfazBaseDAOFachada<T> {
 		Session s = HibernateUtilidad.getSf().getCurrentSession();
 		try {
 			s.beginTransaction();
-			s.remove(modeloAEliminar);
+			s.delete(modeloAEliminar);
 			s.getTransaction().commit();
 			r = true;
 		} catch (Exception e) {

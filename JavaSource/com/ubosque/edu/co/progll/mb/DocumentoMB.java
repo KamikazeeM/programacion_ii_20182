@@ -3,11 +3,9 @@ package com.ubosque.edu.co.progll.mb;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import com.ubosque.edu.co.progll.logica.AsuntoLogica;
-import com.ubosque.edu.co.progll.logica.DestinoLogica;
 import com.ubosque.edu.co.progll.logica.DocumentoLogica;
 import com.ubosque.edu.co.progll.logica.UsuarioLogica;
 import com.ubosque.edu.co.progll.modelo.Asunto;
@@ -18,7 +16,6 @@ import javax.faces.application.FacesMessage;
 
 
 @ManagedBean
-@SessionScoped
 public class DocumentoMB {
 
 	public DocumentoMB() {
@@ -137,13 +134,9 @@ public class DocumentoMB {
 		FacesContext context = FacesContext.getCurrentInstance();
 		boolean r = documentoLogica.eliminarDocumento(documentoLogica.consultarDocumentoPorId(id));
 		if(r) {
-			context.addMessage(null, new FacesMessage("Actualización OK"));
+			context.addMessage(null, new FacesMessage("Eliminación OK"));
 		} else {
-			context.addMessage(null, new FacesMessage("Actualización ERROR"));
+			context.addMessage(null, new FacesMessage("Eliminación ERROR"));
 		}
-	}
-	
-	public String crear() {
-		return "documento?faces-redirect=true";
 	}
 }

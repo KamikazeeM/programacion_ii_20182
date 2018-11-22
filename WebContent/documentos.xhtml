@@ -104,7 +104,8 @@
 				</p:column>
 
 				<p:column headerText="Eliminar" width="80">
-					<h:commandLink styleClass="btn btn-danger" value="Eliminar" action="#{documentoMB.eliminar(item.id)}" />
+					<h:commandLink styleClass="btn btn-danger" value="Eliminar" 
+					action="#{documentoMB.eliminar(item.id)}" update="@form growl" process="@this" />
 				</p:column>
 
 			</p:dataTable>
