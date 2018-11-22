@@ -9,8 +9,7 @@
 	<ui:define name="main">
 		<link type="text/css" rel="stylesheet" href="/ProyectoFinalProgramacionII_20182/resources/css/_layout.css" />
 		<div id="mainIndex">
-			<p:layout style="margin: 0px !important!;" stateCookie="false" widgetVar="wgt" fullPage="true">
-				<p:layoutUnit position="west" size="200" gutter="0">
+				<aside class="aside">
 					<div class="logo">
 						<span class="title">BD</span>
 						<hr />
@@ -20,25 +19,23 @@
 						<p:growl id="messages" showDetail="false" />
 						<p:menu>
 							<p:submenu label="Opciones">
-								<p:menuitem value="Documentos" url="/destino/listaDestinos.xhtml"
+								<p:menuitem value="Documentos" url="/documento.xhtml"
 									update="messages" icon="pi pi-save" />
 								<p:menuitem value="Destinos" action="#{MenuMB.update}"
 									update="messages" icon="pi pi-refresh" />
 							</p:submenu>
 							<p:submenu label="Perfil">
-								<p:menuitem value="Cerrar Sesion" action="#{MenuMB.delete}"
+								<p:menuitem value="Cerrar Sesion" action="#{loginMB.logout()}"
 									update="messages" ajax="false" icon="pi pi-times" />
 							</p:submenu>
 						</p:menu>
 					</h:form>
-				</p:layoutUnit>
+				</aside>
 
-				<p:layoutUnit position="center" gutter="0">
-
+				<section class="center">
 					<ui:insert name="content">
 					</ui:insert>
-				</p:layoutUnit>
-			</p:layout>
+				</section>
 		</div>
 	</ui:define>
 </ui:composition>

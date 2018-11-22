@@ -57,9 +57,10 @@ body {
 
 #mainLogin {
 	display: flex;
-	align-items: center; height : 100%;
+	align-items: center;
 	width: 100%;
 	height: 100%;
+	margin-top: 15%;
 }
 
 #mainLogin .logo {
