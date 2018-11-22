@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/_layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="documentoId" value="#{documentoMB.documento.id}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:form rendered="#{documentoMB.isRead}">
+			<p:messages id="messages" />
+
+			<p:fieldset legend="Nuevo Documento">
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="Título:" for="title" />
+					<p:inputText id="title" value="#{documentoMB.documento.titulo}"
+						required="true" requiredMessage="Título obrigatório">
+					</p:inputText>
+
+					<p:outputLabel value="Fecha Documento:" for="dateDoc" />
+					<p:calendar id="dateDoc"
+						value="#{documentoMB.documento.fechaDocumento}"
+						pattern="dd/MM/yyyy" timeZone="-05:00" mask="true" />
+
+					<p:outputLabel value="Fecha Radicado:" for="dateR" />
+					<p:calendar id="dateR"
+						value="#{documentoMB.documento.fechaRadicado}"
+						pattern="dd/MM/yyyy" timeZone="-05:00" mask="true" />
+
+					<p:outputLabel value="Asunto" for="asunto" />
+					<p:selectOneMenu id="asunto" value="#{documentoMB.documento.asuntoId}">
+						<f:selectItems value="#{documentoMB.asuntos}" var="asunto"
+							itemLabel="#{asunto.nombre}" itemValue="#{asunto.id}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Origen" for="source" />
+					<p:inputText id="source" value="#{documentoMB.documento.origen}">
+					</p:inputText>
+
+					<p:outputLabel value="Destinatario" for="recipient" />
+					<p:selectOneMenu id="recipient" value="#{documentoMB.documento.usuarioId}">
+						<f:selectItems value="#{documentoMB.usuarios}" var="user"
+							itemLabel="#{user.usuario}" itemValue="#{user.id}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Comentarios:" for="comment" />
+					<p:inputTextarea id="comment"
+						value="#{documentoMB.documento.comentarios}" rows="5" cols="30"
+						maxlength="255" autoResize="false" required="true"
+						requiredMessage="Comentario obligatório">
+					</p:inputTextarea>
+
+					<p:outputLabel value="Radicado" for="numR" />
+					<p:inputNumber id="numR" decimalPlaces="0" value="#{documentoMB.documento.numeroRadicado}" >
+					</p:inputNumber>
+
+				</p:panelGrid>
+
+			</p:fieldset>
+			<p:commandButton styleClass="mt-3 float-right btn btn-primary" value="Guardar" action="#{documentoMB.guardar}"
+				process="@form" update="@form" />
+				
+				<h:commandLink styleClass="btn btn-primary" value="Volver" action="#{documentoMB.listar}" />
+		</h:form>
+		<h:form id="documentos" rendered="#{!documentoMB.isRead}">
+			<p:dataTable value="#{documentoMB.documentos}" var="item"
+				id="documentos" paginator="true" rows="5">
+
+				<f:facet name="header">Documentos</f:facet>
+				<p:column headerText="Título" sortBy="#{item.titulo}"
+					filterBy="#{item.titulo}" filterMatchMode="startsWith">
+					<h:outputText value="#{item.titulo}" />
+				</p:column>
+				
+				<p:column headerText="Fecha Documento" sortBy="#{item.fechaDocumento}">
+					<h:outputText value="#{item.fechaDocumento}">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="-05:00" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Fecha Radicado" sortBy="#{item.fechaRadicado}">
+					<h:outputText value="#{item.fechaRadicado}">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="-05:00" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Asunto" sortBy="#{item.asuntoId}"
+					filterBy="#{item.asuntoId}" filterMatchMode="startsWith">
+					<h:outputText value="#{documentoMB.getAsuntoById(item.asuntoId)}" />
+				</p:column>
+
+				<p:column headerText="Radicado" sortBy="#{item.numeroRadicado}">
+					<h:outputText value="#{item.numeroRadicado}">
+						<f:convertNumber />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Alterar" width="80">
+					<h:commandLink value="altera" action="#{livroBean.carregar(livro)}" />
+				</p:column>
+
+				<p:column headerText="Remover" width="80">
+					<h:commandLink value="remove" action="#{livroBean.remover(livro)}" />
+				</p:column>
+
+			</p:dataTable>
+			
+			<h:commandLink styleClass="btn btn-primary" value="crear" action="#{documentoMB.crear}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

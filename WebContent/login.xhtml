@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="/_template.xhtml">
@@ -18,12 +19,12 @@
 				<h:form id="login">
 					<h:panelGrid columns="1">
 						<h:inputText id="email" value="#{loginMB.usuario.usuario}"
-							required="true" placeholder="Email">
+							required="true" a:placeholder="Usuario" >
 						</h:inputText>
 						<h:message for="email" id="messageEmail" />
 
 						<h:inputSecret id="senha" value="#{loginMB.usuario.contrasena}"
-							required="true" placeholder="Contraseña" />
+							required="true" a:placeholder="Contraseña"  />
 						<h:message for="senha" id="messageSenha" />
 
 						<h:commandButton styleClass="mt-3 btn btn-block btn-primary"

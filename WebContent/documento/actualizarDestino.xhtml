@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<h:form>
+<h:outputLabel value="ALTUALIZAR DESTINO" />
+<br/>
+<h:panelGrid columns="3">
+<br/>
+
+<h:outputLabel value="id" for="id" />
+<h:inputText value="#{destinoMB.actualizarDestino.id}" id="id" required="true"  readonly="true"/>
+<h:message for="id"/>
+
+
+<h:outputLabel value="Nombres" for="nombres" />
+<h:inputText value="#{destinoMB.actualizarDestino.nombres}" id="nombres" required="true" />
+<h:message for="nombres"/>
+
+
+<h:outputLabel value="Apellidos" for="apellidos" />
+<h:inputText value="#{destinoMB.actualizarDestino.apellidos}" id="apellidos" required="true" />
+<h:message for="apellidos"/>
+
+
+<h:outputLabel value="Area" for="area" />
+<h:selectOneMenu value="#{destinoMB.actualizarDestino.area}" id="area">
+<f:selectItem itemLabel="Tecnologia" itemValue="TIC"/>
+<f:selectItem itemLabel="Contabilidad" itemValue="CONT"/>
+<f:selectItem itemLabel="Recursos Humanos" itemValue="RRHH"/>
+<f:selectItem itemLabel="Gerencia" itemValue="GER"/>
+</h:selectOneMenu>
+<h:message for="area"/>
+
+
+<h:outputLabel value="Correo" for="correo" />
+<h:inputText value="#{destinoMB.actualizarDestino.correo}" id="correo" required="true" />
+<h:message for="correo"/>
+
+
+</h:panelGrid>
+<br/>
+<h:commandButton action="#{destinoMB.actualizar()}" value="Actualizar" />
+
+</h:form>
+
+</body> 
+</html>

@@ -68,4 +68,12 @@ public class BaseDAO<T> implements InterfazBaseDAOFachada<T> {
 		}
 		return r;
 	}
+	
+	@Override
+	public T buscarPorId(final Class<T> claseALeer, Integer id) {
+		Session s = HibernateUtilidad.getSf().getCurrentSession();
+		T instancia = s.find(claseALeer, id);
+		s.close();
+		return instancia;
+	}
 }

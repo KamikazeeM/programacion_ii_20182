@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="main">
+		<link type="text/css" rel="stylesheet" href="/ProyectoFinalProgramacionII_20182/resources/css/_layout.css" />
+		<div id="mainIndex">
+			<p:layout style="margin: 0px !important!;" stateCookie="false" widgetVar="wgt" fullPage="true">
+				<p:layoutUnit position="west" size="200" gutter="0">
+					<div class="logo">
+						<span class="title">BD</span>
+						<hr />
+						<span class="subtitle">Docs</span>
+					</div>
+					<h:form styleClass="menu">
+						<p:growl id="messages" showDetail="false" />
+						<p:menu>
+							<p:submenu label="Opciones">
+								<p:menuitem value="Documentos" url="/destino/listaDestinos.xhtml"
+									update="messages" icon="pi pi-save" />
+								<p:menuitem value="Destinos" action="#{MenuMB.update}"
+									update="messages" icon="pi pi-refresh" />
+							</p:submenu>
+							<p:submenu label="Perfil">
+								<p:menuitem value="Cerrar Sesion" action="#{MenuMB.delete}"
+									update="messages" ajax="false" icon="pi pi-times" />
+							</p:submenu>
+						</p:menu>
+					</h:form>
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center" gutter="0">
+
+					<ui:insert name="content">
+					</ui:insert>
+				</p:layoutUnit>
+			</p:layout>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

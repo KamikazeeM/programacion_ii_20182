@@ -1,17 +1,18 @@
 package com.ubosque.edu.co.progll.mb;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.ubosque.edu.co.progll.logica.DestinoLogica;
 import com.ubosque.edu.co.progll.modelo.Destino;
 
 @ManagedBean
 @SessionScoped
-
 public class DestinoMB {
 
 	private DestinoLogica destinoLogica = new DestinoLogica();
@@ -29,24 +30,26 @@ public class DestinoMB {
 	public String guardar() {
 		destinoLogica.crearDestino(crearDestino);
 		destino = destinoLogica.consultarDestinos();
-		return "listaDestinos";
+		return "listaDestinos?faces-redirect=true";
 	}
 
 	public String actualizar() {
 		destinoLogica.actualizarDestino(actualizarDestino);
 		destino = destinoLogica.consultarDestinos();
-		return "listaDestinos";
+		return "listaDestinos?faces-redirect=true";
 	}
 
-	public String eliminar() {
+	public void eliminar() {
 		destinoLogica.eliminarDestino(eliminarDestino);
 		destino = destinoLogica.consultarDestinos();
-		return null;
 	}
 
-	public String inicializarNuevo() {
+	public void inicializarNuevo() {
 		crearDestino = new Destino();
-		return "crearDestino";
+		try {
+	        FacesContext.getCurrentInstance().getExternalContext().redirect("MYSERVERADDRESS" + "/destino/crearDestino?faces-redirect=true");
+	    } catch (IOException ex) {
+	    }
 	}
 
 	public List<Destino> getDestino() {

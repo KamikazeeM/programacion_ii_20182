@@ -1,13 +1,10 @@
 package com.ubosque.edu.co.progll.modelo;
-// Generated 12/11/2018 11:20:32 PM by Hibernate Tools 5.2.11.Final
+// Generated 22/11/2018 10:18:51 AM by Hibernate Tools 5.2.11.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,12 +17,12 @@ import javax.persistence.TemporalType;
 public class Documento implements java.io.Serializable {
 
 	private int id;
-	private Asunto asuntoByUsuarioId;
-	private Asunto asuntoByAsuntoId;
-	private String nombres;
+	private String titulo;
 	private Date fechaDocumento;
 	private Date fechaRadicado;
 	private String origen;
+	private int asuntoId;
+	private int usuarioId;
 	private Long numeroRadicado;
 	private String comentarios;
 	private String anexo;
@@ -33,23 +30,23 @@ public class Documento implements java.io.Serializable {
 	public Documento() {
 	}
 
-	public Documento(int id, Asunto asuntoByUsuarioId, Asunto asuntoByAsuntoId, String nombres, String origen) {
+	public Documento(int id, String titulo, String origen, int asuntoId, int usuarioId) {
 		this.id = id;
-		this.asuntoByUsuarioId = asuntoByUsuarioId;
-		this.asuntoByAsuntoId = asuntoByAsuntoId;
-		this.nombres = nombres;
+		this.titulo = titulo;
 		this.origen = origen;
+		this.asuntoId = asuntoId;
+		this.usuarioId = usuarioId;
 	}
 
-	public Documento(int id, Asunto asuntoByUsuarioId, Asunto asuntoByAsuntoId, String nombres, Date fechaDocumento,
-			Date fechaRadicado, String origen, Long numeroRadicado, String comentarios, String anexo) {
+	public Documento(int id, String titulo, Date fechaDocumento, Date fechaRadicado, String origen, int asuntoId,
+			int usuarioId, Long numeroRadicado, String comentarios, String anexo) {
 		this.id = id;
-		this.asuntoByUsuarioId = asuntoByUsuarioId;
-		this.asuntoByAsuntoId = asuntoByAsuntoId;
-		this.nombres = nombres;
+		this.titulo = titulo;
 		this.fechaDocumento = fechaDocumento;
 		this.fechaRadicado = fechaRadicado;
 		this.origen = origen;
+		this.asuntoId = asuntoId;
+		this.usuarioId = usuarioId;
 		this.numeroRadicado = numeroRadicado;
 		this.comentarios = comentarios;
 		this.anexo = anexo;
@@ -66,33 +63,13 @@ public class Documento implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_id", nullable = false)
-	public Asunto getAsuntoByUsuarioId() {
-		return this.asuntoByUsuarioId;
+	@Column(name = "titulo", nullable = false, length = 100)
+	public String getTitulo() {
+		return this.titulo;
 	}
 
-	public void setAsuntoByUsuarioId(Asunto asuntoByUsuarioId) {
-		this.asuntoByUsuarioId = asuntoByUsuarioId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "asunto_id", nullable = false)
-	public Asunto getAsuntoByAsuntoId() {
-		return this.asuntoByAsuntoId;
-	}
-
-	public void setAsuntoByAsuntoId(Asunto asuntoByAsuntoId) {
-		this.asuntoByAsuntoId = asuntoByAsuntoId;
-	}
-
-	@Column(name = "nombres", nullable = false, length = 100)
-	public String getNombres() {
-		return this.nombres;
-	}
-
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -122,6 +99,24 @@ public class Documento implements java.io.Serializable {
 
 	public void setOrigen(String origen) {
 		this.origen = origen;
+	}
+
+	@Column(name = "asunto_id", nullable = false)
+	public int getAsuntoId() {
+		return this.asuntoId;
+	}
+
+	public void setAsuntoId(int asuntoId) {
+		this.asuntoId = asuntoId;
+	}
+
+	@Column(name = "usuario_id", nullable = false)
+	public int getUsuarioId() {
+		return this.usuarioId;
+	}
+
+	public void setUsuarioId(int usuarioId) {
+		this.usuarioId = usuarioId;
 	}
 
 	@Column(name = "numero_radicado")

@@ -1,12 +1,9 @@
 package com.ubosque.edu.co.progll.modelo;
-// Generated 12/11/2018 11:20:32 PM by Hibernate Tools 5.2.11.Final
+// Generated 22/11/2018 10:18:51 AM by Hibernate Tools 5.2.11.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,16 +14,16 @@ import javax.persistence.Table;
 public class RolPermiso implements java.io.Serializable {
 
 	private int id;
-	private Permiso permiso;
-	private Rol rol;
+	private int rolId;
+	private int permisoId;
 
 	public RolPermiso() {
 	}
 
-	public RolPermiso(int id, Permiso permiso, Rol rol) {
+	public RolPermiso(int id, int rolId, int permisoId) {
 		this.id = id;
-		this.permiso = permiso;
-		this.rol = rol;
+		this.rolId = rolId;
+		this.permisoId = permisoId;
 	}
 
 	@Id
@@ -40,24 +37,22 @@ public class RolPermiso implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "permiso_id", nullable = false)
-	public Permiso getPermiso() {
-		return this.permiso;
+	@Column(name = "rol_id", nullable = false)
+	public int getRolId() {
+		return this.rolId;
 	}
 
-	public void setPermiso(Permiso permiso) {
-		this.permiso = permiso;
+	public void setRolId(int rolId) {
+		this.rolId = rolId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "rol_id", nullable = false)
-	public Rol getRol() {
-		return this.rol;
+	@Column(name = "permiso_id", nullable = false)
+	public int getPermisoId() {
+		return this.permisoId;
 	}
 
-	public void setRol(Rol rol) {
-		this.rol = rol;
+	public void setPermisoId(int permisoId) {
+		this.permisoId = permisoId;
 	}
 
 }

@@ -1,13 +1,9 @@
 package com.ubosque.edu.co.progll.modelo;
-// Generated 12/11/2018 11:20:32 PM by Hibernate Tools 5.2.11.Final
+// Generated 22/11/2018 10:18:51 AM by Hibernate Tools 5.2.11.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,8 +15,6 @@ public class Asunto implements java.io.Serializable {
 
 	private int id;
 	private String nombre;
-	private Set<Documento> documentosForUsuarioId = new HashSet<Documento>(0);
-	private Set<Documento> documentosForAsuntoId = new HashSet<Documento>(0);
 
 	public Asunto() {
 	}
@@ -28,13 +22,6 @@ public class Asunto implements java.io.Serializable {
 	public Asunto(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
-	}
-
-	public Asunto(int id, String nombre, Set<Documento> documentosForUsuarioId, Set<Documento> documentosForAsuntoId) {
-		this.id = id;
-		this.nombre = nombre;
-		this.documentosForUsuarioId = documentosForUsuarioId;
-		this.documentosForAsuntoId = documentosForAsuntoId;
 	}
 
 	@Id
@@ -55,24 +42,6 @@ public class Asunto implements java.io.Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "asuntoByUsuarioId")
-	public Set<Documento> getDocumentosForUsuarioId() {
-		return this.documentosForUsuarioId;
-	}
-
-	public void setDocumentosForUsuarioId(Set<Documento> documentosForUsuarioId) {
-		this.documentosForUsuarioId = documentosForUsuarioId;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "asuntoByAsuntoId")
-	public Set<Documento> getDocumentosForAsuntoId() {
-		return this.documentosForAsuntoId;
-	}
-
-	public void setDocumentosForAsuntoId(Set<Documento> documentosForAsuntoId) {
-		this.documentosForAsuntoId = documentosForAsuntoId;
 	}
 
 }

@@ -1,13 +1,9 @@
 package com.ubosque.edu.co.progll.modelo;
-// Generated 12/11/2018 11:20:32 PM by Hibernate Tools 5.2.11.Final
+// Generated 22/11/2018 10:18:51 AM by Hibernate Tools 5.2.11.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +15,6 @@ public class Permiso implements java.io.Serializable {
 
 	private int id;
 	private String nombre;
-	private Set<RolPermiso> rolPermisos = new HashSet<RolPermiso>(0);
 
 	public Permiso() {
 	}
@@ -27,12 +22,6 @@ public class Permiso implements java.io.Serializable {
 	public Permiso(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
-	}
-
-	public Permiso(int id, String nombre, Set<RolPermiso> rolPermisos) {
-		this.id = id;
-		this.nombre = nombre;
-		this.rolPermisos = rolPermisos;
 	}
 
 	@Id
@@ -53,15 +42,6 @@ public class Permiso implements java.io.Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "permiso")
-	public Set<RolPermiso> getRolPermisos() {
-		return this.rolPermisos;
-	}
-
-	public void setRolPermisos(Set<RolPermiso> rolPermisos) {
-		this.rolPermisos = rolPermisos;
 	}
 
 }

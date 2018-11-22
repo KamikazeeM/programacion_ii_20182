@@ -1,58 +1,54 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head>
-<body>
-	<h:form>
-		<h:outputLabel value="NUEVO DESTINO" />
-		<br />
-		<h:panelGrid columns="3">
-			<br />
+<ui:composition template="/_layout.xhtml">
+	<ui:define name="content">
+		<div id="mainDestino">
+			<h:form>
+				<h:outputLabel value="NUEVO DESTINO" />
+				<br />
+				<h:panelGrid columns="3">
+					<br />
 
-			<h:outputLabel value="id" for="id" rendered="false" />
-			<h:inputText value="#{destinoMB.crearDestino.id}" id="id"
-				required="true"  rendered="false"/>
-			<h:message for="id" rendered="false" />
+					<h:outputLabel value="id" for="id" rendered="false" />
+					<h:inputText value="#{destinoMB.crearDestino.id}" id="id"
+						required="true" rendered="false" />
+					<h:message for="id" rendered="false" />
 
+					<h:outputLabel value="Nombres" for="nombres" />
+					<h:inputText value="#{destinoMB.crearDestino.nombres}" id="nombres"
+						required="true" />
+					<h:message for="nombres" />
 
-			<h:outputLabel value="Nombres" for="nombres" />
-			<h:inputText value="#{destinoMB.crearDestino.nombres}" id="nombres"
-				required="true" />
-			<h:message for="nombres" />
+					<h:outputLabel value="Apellidos" for="apellidos" />
+					<h:inputText value="#{destinoMB.crearDestino.apellidos}"
+						id="apellidos" required="true" />
+					<h:message for="apellidos" />
 
+					<h:outputLabel value="Area" for="area" />
+					<h:selectOneMenu value="#{destinoMB.crearDestino.area}" id="area">
+						<f:selectItem itemLabel="Tecnologia" itemValue="TIC" />
+						<f:selectItem itemLabel="Contabilidad" itemValue="CONT" />
+						<f:selectItem itemLabel="Recursos Humanos" itemValue="RRHH" />
+						<f:selectItem itemLabel="Gerencia" itemValue="GER" />
+					</h:selectOneMenu>
+					<h:message for="area" />
+					
+					<h:outputLabel value="Correo" for="correo" />
+					<h:inputText value="#{destinoMB.crearDestino.correo}" id="correo"
+						required="true" />
+					<h:message for="correo" />
+					
+				</h:panelGrid>
+				<br />
+				<h:commandButton action="#{destinoMB.guardar()}" value="Guardar" />
 
-			<h:outputLabel value="Apellidos" for="apellidos" />
-			<h:inputText value="#{destinoMB.crearDestino.apellidos}"
-				id="apellidos" required="true" />
-			<h:message for="apellidos" />
-
-
-			<h:outputLabel value="Area" for="area" />
-			<h:selectOneMenu value="#{destinoMB.crearDestino.area}" id="area">
-				<f:selectItem itemLabel="Tecnologia" itemValue="TIC" />
-				<f:selectItem itemLabel="Contabilidad" itemValue="CONT" />
-				<f:selectItem itemLabel="Recursos Humanos" itemValue="RRHH" />
-				<f:selectItem itemLabel="Gerencia" itemValue="GER" />
-			</h:selectOneMenu>
-			<h:message for="area" />
-
-
-			<h:outputLabel value="Correo" for="correo" />
-			<h:inputText value="#{destinoMB.crearDestino.correo}" id="correo"
-				required="true" />
-			<h:message for="correo" />
-
-
-		</h:panelGrid>
-		<br />
-		<h:commandButton action="#{destinoMB.guardar()}" value="Guardar" />
-
-	</h:form>
-
-
-
-</body>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
 </html>

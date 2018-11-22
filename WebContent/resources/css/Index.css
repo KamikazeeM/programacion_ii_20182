@@ -1,0 +1,54 @@
+@charset "ISO-8859-1";
+
+* {
+	font-family: 'Verdana'; padding : 0;
+	margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background: #dedede !important;
+	height: 100%;
+	width: 100%;
+}
+
+
+#main {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+#mainIndex {
+	align-items: center; height : 100%;
+	width: 100%;
+	height: 100%;
+}
+
+#mainIndex form {
+	width: 100%;
+}
+
+#mainIndex table {
+	margin: auto;
+	width: 70%;
+}
+
+#mainIndex aside {
+	width: 10%;
+	margin-top: 80px;
+}
+
+#mainIndex header {
+	width: 200px;
+    background: #303030;
+    height: auto;
+    padding: 20px;
+}

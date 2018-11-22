@@ -1,12 +1,9 @@
 package com.ubosque.edu.co.progll.modelo;
-// Generated 12/11/2018 11:20:32 PM by Hibernate Tools 5.2.11.Final
+// Generated 22/11/2018 10:18:51 AM by Hibernate Tools 5.2.11.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,9 +14,9 @@ import javax.persistence.Table;
 public class Usuario implements java.io.Serializable {
 
 	private int id;
-	private Rol rol;
 	private String usuario;
 	private String contrasena;
+	private Integer rolId;
 
 	public Usuario() {
 	}
@@ -30,11 +27,11 @@ public class Usuario implements java.io.Serializable {
 		this.contrasena = contrasena;
 	}
 
-	public Usuario(int id, Rol rol, String usuario, String contrasena) {
+	public Usuario(int id, String usuario, String contrasena, Integer rolId) {
 		this.id = id;
-		this.rol = rol;
 		this.usuario = usuario;
 		this.contrasena = contrasena;
+		this.rolId = rolId;
 	}
 
 	@Id
@@ -46,16 +43,6 @@ public class Usuario implements java.io.Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "rol_id")
-	public Rol getRol() {
-		return this.rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
 	}
 
 	@Column(name = "usuario", nullable = false, length = 100)
@@ -74,6 +61,15 @@ public class Usuario implements java.io.Serializable {
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+
+	@Column(name = "rol_id")
+	public Integer getRolId() {
+		return this.rolId;
+	}
+
+	public void setRolId(Integer rolId) {
+		this.rolId = rolId;
 	}
 
 }

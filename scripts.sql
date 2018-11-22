@@ -1,3 +1,4 @@
+SET GLOBAL time_zone = '-5:00';
 drop database if exists programacion_ii_20182;
 create database if not exists programacion_ii_20182;
 
@@ -18,9 +19,7 @@ create table rol_permiso (
     rol_id int not null,
     permiso_id int not null,
 	index (rol_id),
-	foreign key(rol_id) references rol(id),
-    index (permiso_id ),
-	foreign key(permiso_id) references permiso(id)
+    index (permiso_id )
 );
 
 create table asunto (
@@ -33,8 +32,7 @@ create table usuario (
     usuario varchar(100) not null,
     contrasena varchar(100) not null,
     rol_id int,
-	index (rol_id),
-	foreign key(rol_id) references rol(id)
+	index (rol_id)
 );
 
 create table destino (
@@ -47,27 +45,24 @@ create table destino (
 
 create table documento (
 	id int not null unique primary key auto_increment,
-    nombres varchar(100) not null,
+    titulo varchar(100) not null,
     fecha_documento date,
     fecha_radicado date,
     origen varchar(45) not null,
     asunto_id int not null,
     index (asunto_id),
-	foreign key(asunto_id) references asunto(id),
     usuario_id int not null,
     index (usuario_id),
-	foreign key(usuario_id) references asunto(id),
     numero_radicado bigint,
     comentarios varchar(255),
     anexo varchar(255)
 );
 
 
-insert into usuario values(null, 'rgarcia', 'Joder123,', null); 
+insert into usuario values(null, 'rgarcia', '420F1BEE798DCADD0868AB9D05157C8B5F054D4F66EB7267E604998763A3EC21', null); 
+insert into asunto values(null, 'Incapacidad'); 
 insert into rol values(null, 'administrador'); 
 insert into permiso values(null, 'administrarDestinos'); 
 insert into rol_permiso values(null, (select id from rol where nombre = 'administrador'),(select id from permiso where nombre = 'administrarDestinos'));
-
-
 
 

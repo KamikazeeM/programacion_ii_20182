@@ -11,4 +11,6 @@ public interface InterfazBaseDAOFachada<T> {
 	public boolean update(T modeloAActualizar);
 	
 	public boolean delete(T modeloAEliminar);
+	
+	public T buscarPorId(final Class<T> claseALeer, Integer id);
 }
