@@ -36,6 +36,8 @@ public class LoginMB {
 	}
 	
 	public String logout() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().remove("usuarioLogado");
 		return "login?faces-redirect=true";
 	}
 }

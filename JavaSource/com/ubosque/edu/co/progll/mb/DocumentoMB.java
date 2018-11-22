@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.ubosque.edu.co.progll.logica.AsuntoLogica;
 import com.ubosque.edu.co.progll.logica.DestinoLogica;
@@ -12,6 +13,9 @@ import com.ubosque.edu.co.progll.logica.UsuarioLogica;
 import com.ubosque.edu.co.progll.modelo.Asunto;
 import com.ubosque.edu.co.progll.modelo.Documento;
 import com.ubosque.edu.co.progll.modelo.Usuario;
+
+import javax.faces.application.FacesMessage;
+
 
 @ManagedBean
 @SessionScoped
@@ -88,6 +92,9 @@ public class DocumentoMB {
 		this.usuarios = usuarios;
 	}
 	
+	public Usuario getUsuarioById(int id) {
+		return usuarioLogica.consultarUsuarioPorId(id);
+	}
 
 	public Asunto getAsuntoById(int id) {
 		return asuntoLogica.consultarAsuntoPorId(id);
@@ -111,19 +118,32 @@ public class DocumentoMB {
 	private UsuarioLogica usuarioLogica = new UsuarioLogica();
 
 	public void guardar() {
-		System.out.println("Gravando livro " + this.documento.getTitulo());
-
-		documentoLogica.crearDocumento(this.documento);
+		if(this.documento.getId() == 0) {			
+			documentoLogica.crearDocumento(this.documento);
+		} 
+		else 
+		{
+			documentoLogica.actualizarDocumento(this.documento);
+		}
 		documentos = documentoLogica.consultarDocumentos();
 		this.documento = new Documento();
 	}
 	
-	public void crear() {
-		this.setIsRead(true);
+	public void editar(int id) {
+		this.documento = documentoLogica.consultarDocumentoPorId(id);
 	}
 	
-	public void listar() {
-		this.setIsRead(false);
+	public void eliminar(int id) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		boolean r = documentoLogica.eliminarDocumento(documentoLogica.consultarDocumentoPorId(id));
+		if(r) {
+			context.addMessage(null, new FacesMessage("Actualización OK"));
+		} else {
+			context.addMessage(null, new FacesMessage("Actualización ERROR"));
+		}
 	}
-
+	
+	public String crear() {
+		return "documento?faces-redirect=true";
+	}
 }

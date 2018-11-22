@@ -74,9 +74,16 @@ table.ui-panelgrid {
 }
 
 legend.ui-fieldset-legend.ui-corner-all.ui-state-default,
+div.ui-datatable-header.ui-widget-header.ui-corner-top, 
 .bg-primary {
 	color: #fff;
 	background: #303030;
+}
+
+body .ui-button,
+a.ui-paginator-page.ui-state-default.ui-state-active.ui-corner-all {
+	background-color: #303030;
+    border-color: #303030;
 }
 
 .btn-primary:hover {

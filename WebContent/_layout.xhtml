@@ -19,10 +19,12 @@
 						<p:growl id="messages" showDetail="false" />
 						<p:menu>
 							<p:submenu label="Opciones">
-								<p:menuitem value="Documentos" url="/documento.xhtml"
+								<p:menuitem value="Documentos" url="/documentos.xhtml"
 									update="messages" icon="pi pi-save" />
-								<p:menuitem value="Destinos" action="#{MenuMB.update}"
-									update="messages" icon="pi pi-refresh" />
+								<p:menuitem value="Asuntos" url="/documentos.xhtml"
+									update="messages" icon="pi pi-save" />
+								<p:menuitem value="Destinos" url="/documentos.xhtml"
+									update="messages" icon="pi pi-save" />
 							</p:submenu>
 							<p:submenu label="Perfil">
 								<p:menuitem value="Cerrar Sesion" action="#{loginMB.logout()}"
@@ -33,6 +35,7 @@
 				</aside>
 
 				<section class="center">
+					<p:growl id="messages" showDetail="true" autoUpdate="true" />
 					<ui:insert name="content">
 					</ui:insert>
 				</section>

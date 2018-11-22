@@ -9,7 +9,11 @@
 	<ui:define name="content">
 		<link type="text/css" rel="stylesheet" href="resources/css/Index.css" />
 		<div id="mainIndex">
-			<p>Joder</p>
+			<h1>Bienvenido
+			<strong>
+				<h:outputText value="#{loginMB.usuario.usuario}" />
+			</strong>
+			</h1>
 		</div>
 	</ui:define>
 </ui:composition>

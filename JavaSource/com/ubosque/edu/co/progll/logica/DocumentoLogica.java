@@ -5,6 +5,7 @@ import java.util.List;
 import com.ubosque.edu.co.progll.dao.InterfazBaseDAOFachada;
 import com.ubosque.edu.co.progll.delegado.BaseDelegado;
 import com.ubosque.edu.co.progll.modelo.Documento;
+import com.ubosque.edu.co.progll.modelo.Documento;
 
 public class DocumentoLogica {
 	
@@ -23,6 +24,10 @@ public class DocumentoLogica {
 	
 	public List<Documento> consultarDocumentos() {
 		return documentoFachada.read(Documento.class);
+	}
+	
+	public Documento consultarDocumentoPorId(int id) {
+		return (Documento) documentoFachada.buscarPorId(Documento.class, id);
 	}
 	
 	public boolean actualizarDocumento(Documento documentoAActualizar) {

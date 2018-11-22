@@ -7,6 +7,7 @@ import com.ubosque.edu.co.progll.dao.InterfazUsuarioDAOFachada;
 import com.ubosque.edu.co.progll.delegado.BaseDelegado;
 import com.ubosque.edu.co.progll.delegado.UsuarioDelegado;
 import com.ubosque.edu.co.progll.modelo.Usuario;
+import com.ubosque.edu.co.progll.modelo.Usuario;
 
 public class UsuarioLogica {
 	
@@ -31,6 +32,10 @@ public class UsuarioLogica {
 	
 	public List<Usuario> consultarUsuarios() {
 		return baseFachada.read(Usuario.class);
+	}
+	
+	public Usuario consultarUsuarioPorId(int id) {
+		return (Usuario) baseFachada.buscarPorId(Usuario.class, id);
 	}
 	
 	public boolean actualizarUsuario(Usuario usuarioAActualizar) {

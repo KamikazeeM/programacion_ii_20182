@@ -6,13 +6,8 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="/_layout.xhtml">
-
-	<f:metadata>
-		<f:viewParam name="documentoId" value="#{documentoMB.documento.id}" />
-	</f:metadata>
-
 	<ui:define name="content">
-		<h:form rendered="#{documentoMB.isRead}">
+		<h:form>
 			<p:messages id="messages" />
 
 			<p:fieldset legend="Nuevo Documento">
@@ -63,19 +58,17 @@
 				</p:panelGrid>
 
 			</p:fieldset>
-			<p:commandButton styleClass="mt-3 float-right btn btn-primary" value="Guardar" action="#{documentoMB.guardar}"
-				process="@form" update="@form" />
+			<p:commandButton styleClass="mt-2 btn btn-primary" value="Guardar" action="#{documentoMB.guardar}"
+				process="@form" update="@form :formDocumentos:documentos" />
 				
-				<h:commandLink styleClass="btn btn-primary" value="Volver" action="#{documentoMB.listar}" />
 		</h:form>
-		<h:form id="documentos" rendered="#{!documentoMB.isRead}">
+		<h:form id="formDocumentos" styleClass="mt-2">
 			<p:dataTable value="#{documentoMB.documentos}" var="item"
 				id="documentos" paginator="true" rows="5">
 
 				<f:facet name="header">Documentos</f:facet>
-				<p:column headerText="Título" sortBy="#{item.titulo}"
-					filterBy="#{item.titulo}" filterMatchMode="startsWith">
-					<h:outputText value="#{item.titulo}" />
+				<p:column headerText="Título" sortBy="#{item.titulo}">
+					<h:outputText value="#{item.titulo}" />	
 				</p:column>
 				
 				<p:column headerText="Fecha Documento" sortBy="#{item.fechaDocumento}">
@@ -92,9 +85,12 @@
 					</h:outputText>
 				</p:column>
 				
-				<p:column headerText="Asunto" sortBy="#{item.asuntoId}"
-					filterBy="#{item.asuntoId}" filterMatchMode="startsWith">
-					<h:outputText value="#{documentoMB.getAsuntoById(item.asuntoId)}" />
+				<p:column headerText="Asunto" sortBy="#{item.asuntoId}">
+					<h:outputText value="#{documentoMB.getAsuntoById(item.asuntoId).nombre}" />
+				</p:column>
+				
+				<p:column headerText="Usuario" sortBy="#{item.usuarioId}">
+					<h:outputText value="#{documentoMB.getUsuarioById(item.usuarioId).usuario}" />
 				</p:column>
 
 				<p:column headerText="Radicado" sortBy="#{item.numeroRadicado}">
@@ -103,17 +99,15 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Alterar" width="80">
-					<h:commandLink value="altera" action="#{livroBean.carregar(livro)}" />
+				<p:column headerText="Editar" width="80">
+					<h:commandLink styleClass="btn btn-info" value="Editar" action="#{documentoMB.editar(item.id)}" />
 				</p:column>
 
-				<p:column headerText="Remover" width="80">
-					<h:commandLink value="remove" action="#{livroBean.remover(livro)}" />
+				<p:column headerText="Eliminar" width="80">
+					<h:commandLink styleClass="btn btn-danger" value="Eliminar" action="#{documentoMB.eliminar(item.id)}" />
 				</p:column>
 
 			</p:dataTable>
-			
-			<h:commandLink styleClass="btn btn-primary" value="crear" action="#{documentoMB.crear}" />
 		</h:form>
 	</ui:define>
 </ui:composition>
