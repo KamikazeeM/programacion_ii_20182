@@ -40,6 +40,23 @@ public class UsuarioDAO extends BaseDAO<Usuario> implements InterfazUsuarioDAOFa
 		return existe;
 	}
 
+	@Override
+	public Usuario obtenerPorUsuario(String username) {
+		Usuario usuario = null;
+		Session s = HibernateUtilidad.getSf().getCurrentSession();
+		try {
+			s.beginTransaction();
+			Criteria crit = s.createCriteria(Usuario.class);
+			Criterion rest = Restrictions.eq("usuario", username);
+			crit.add(rest);	
+			usuario = (Usuario) crit.uniqueResult();
+			s.getTransaction().commit();
+		} catch (Exception e) {
+			usuario = null;
+		}		
+		return usuario;
+	}
+
 	/*
 	 * @Override public boolean existe(String username, String password) { boolean r
 	 * = false; Session s = HibernateUtilidad.getSf().getCurrentSession();

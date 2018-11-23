@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/_layout.xhtml">
+	<ui:define name="content">
+		<h:form id="formDocumentos" styleClass="mt-2">
+			<p:dataTable value="#{documentoMB.documentos}" var="item"
+				id="documentos" paginator="true" rows="5">
+
+				<f:facet name="header">Documentos</f:facet>
+				<p:column headerText="Título" sortBy="#{item.titulo}">
+					<h:outputText value="#{item.titulo}" />	
+				</p:column>
+				
+				<p:column headerText="Fecha Documento" sortBy="#{item.fechaDocumento}">
+					<h:outputText value="#{item.fechaDocumento}">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="-05:00" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Fecha Radicado" sortBy="#{item.fechaRadicado}">
+					<h:outputText value="#{item.fechaRadicado}">
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="-05:00" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Asunto" sortBy="#{item.asuntoId}">
+					<h:outputText value="#{documentoMB.getAsuntoById(item.asuntoId).nombre}" />
+				</p:column>
+				
+				<p:column headerText="Origen" sortBy="#{item.origen}">
+					<h:outputText value="#{item.origen}" />
+				</p:column>
+				
+				<p:column headerText="Destinatario" sortBy="#{item.usuarioId}">
+					<h:outputText
+						value="#{documentoMB.getDestinoById(item.usuarioId).nombres}" />
+				</p:column>
+
+				<p:column headerText="Radicado" sortBy="#{item.numeroRadicado}">
+					<h:outputText value="#{item.numeroRadicado}">
+						<f:convertNumber />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Detalle" width="80">
+					<h:commandLink styleClass="btn btn-info" value="Ver" action="#{documentoMB.editar(item.id)}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

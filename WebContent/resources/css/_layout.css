@@ -10,13 +10,13 @@
 
 .aside {
 	padding: 1em;
+	height: 100%;
 	position: absolute;
     margin: 0px;
     left: 0px;
     right: auto;
     top: 0px;
     bottom: 0px;
-    height: 979px;
     z-index: 0;
     width: 200px;
     display: block;

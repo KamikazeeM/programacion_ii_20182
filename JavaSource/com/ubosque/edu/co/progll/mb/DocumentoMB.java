@@ -3,12 +3,15 @@ package com.ubosque.edu.co.progll.mb;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import com.ubosque.edu.co.progll.logica.AsuntoLogica;
+import com.ubosque.edu.co.progll.logica.DestinoLogica;
 import com.ubosque.edu.co.progll.logica.DocumentoLogica;
 import com.ubosque.edu.co.progll.logica.UsuarioLogica;
 import com.ubosque.edu.co.progll.modelo.Asunto;
+import com.ubosque.edu.co.progll.modelo.Destino;
 import com.ubosque.edu.co.progll.modelo.Documento;
 import com.ubosque.edu.co.progll.modelo.Usuario;
 
@@ -16,19 +19,20 @@ import javax.faces.application.FacesMessage;
 
 
 @ManagedBean
+@ViewScoped
 public class DocumentoMB {
 
 	public DocumentoMB() {
 	}
 
-	private Boolean isRead = false;
+	private Boolean isEdit = false;
 
-	public Boolean getIsRead() {
-		return isRead;
+	public Boolean getIsEdit() {
+		return isEdit ;
 	}
 
-	public void setIsRead(Boolean isRead) {
-		this.isRead = isRead;
+	public void setIsEdit(Boolean isEdit) {
+		this.isEdit = isEdit;
 	}
 
 	private Documento documento = new Documento();;
@@ -76,21 +80,21 @@ public class DocumentoMB {
 		this.userId = userId;
 	}
 
-	private List<Usuario> usuarios = null;
+	private List<Destino> destinos = null;
 
-	public List<Usuario> getUsuarios() {
-		if (this.usuarios == null) {
-			this.usuarios = usuarioLogica.consultarUsuarios();
+	public List<Destino> getDestinos() {
+		if (this.destinos == null) {
+			this.destinos = destinoLogica.consultarDestinos();
 		}
-		return usuarios;
+		return destinos;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setUsuarios(List<Destino> destinos) {
+		this.destinos = destinos;
 	}
 	
-	public Usuario getUsuarioById(int id) {
-		return usuarioLogica.consultarUsuarioPorId(id);
+	public Destino getDestinoById(int id) {
+		return destinoLogica.consultarDestinoPorId(id);
 	}
 
 	public Asunto getAsuntoById(int id) {
@@ -113,9 +117,10 @@ public class DocumentoMB {
 	private DocumentoLogica documentoLogica = new DocumentoLogica();
 	private AsuntoLogica asuntoLogica = new AsuntoLogica();
 	private UsuarioLogica usuarioLogica = new UsuarioLogica();
+	private DestinoLogica destinoLogica = new DestinoLogica();
 
 	public void guardar() {
-		if(this.documento.getId() == 0) {			
+		if(!isEdit) {			
 			documentoLogica.crearDocumento(this.documento);
 		} 
 		else 
@@ -124,19 +129,18 @@ public class DocumentoMB {
 		}
 		documentos = documentoLogica.consultarDocumentos();
 		this.documento = new Documento();
+		this.isEdit = false;
 	}
 	
 	public void editar(int id) {
+		this.isEdit = true;
 		this.documento = documentoLogica.consultarDocumentoPorId(id);
+		if (this.documento != null) {
+			this.documento.setId(id);
+		}
 	}
 	
 	public void eliminar(int id) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		boolean r = documentoLogica.eliminarDocumento(documentoLogica.consultarDocumentoPorId(id));
-		if(r) {
-			context.addMessage(null, new FacesMessage("Eliminación OK"));
-		} else {
-			context.addMessage(null, new FacesMessage("Eliminación ERROR"));
-		}
+		documentoLogica.eliminarDocumento(documentoLogica.consultarDocumentoPorId(id));
 	}
 }

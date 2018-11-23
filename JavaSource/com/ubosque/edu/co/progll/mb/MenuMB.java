@@ -1,37 +1,39 @@
 package com.ubosque.edu.co.progll.mb;
 
-import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
+import com.ubosque.edu.co.progll.logica.UsuarioLogica;
 import com.ubosque.edu.co.progll.modelo.Usuario;
+import com.ubosque.edu.co.progll.util.SessionUtils;
 
 @ManagedBean
 @ViewScoped
 public class MenuMB {
 	
-	private Usuario usuarioLogado  = new Usuario();
+	private UsuarioLogica usuarioLogica = new UsuarioLogica();
 	
-	public Usuario getUsuario() {
-		return usuarioLogado;
+	private Usuario user = null;
+	
+	public Usuario getUser() {
+		if (user == null) {
+			user = usuarioLogica.consultarUsuarioPorUsuario(this.usuario);
+		}
+		return user;
 	}
 	
-	public void setUsuario(Usuario usuario) {
-		this.usuarioLogado = usuario;
+	private String usuario = null;
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public MenuMB() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		
-		this.setUsuario((Usuario) facesContext.getExternalContext().getSessionMap().get("usuarioLogado"));
-		
-		if(usuarioLogado != null) {
-			return;
-		}
-		
-		NavigationHandler handler = facesContext.getApplication().getNavigationHandler();
-		handler.handleNavigation(facesContext, null, "/login?faces-redirect=true");
+		this.usuario = SessionUtils.getUserName();
 	}
 
 }

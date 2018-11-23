@@ -4,84 +4,60 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import com.ubosque.edu.co.progll.logica.DestinoLogica;
 import com.ubosque.edu.co.progll.modelo.Destino;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class DestinoMB {
+	
+	private Destino destino = new Destino();
 
-	private DestinoLogica destinoLogica = new DestinoLogica();
-
-	private List<Destino> destino = new ArrayList<Destino>();
-
-	private Destino crearDestino = new Destino();
-	private Destino actualizarDestino = new Destino();
-	private Destino eliminarDestino = new Destino();
-
-	public DestinoMB() {
-		destino = destinoLogica.consultarDestinos();
-	}
-
-	public String guardar() {
-		destinoLogica.crearDestino(crearDestino);
-		destino = destinoLogica.consultarDestinos();
-		return "listaDestinos?faces-redirect=true";
-	}
-
-	public String actualizar() {
-		destinoLogica.actualizarDestino(actualizarDestino);
-		destino = destinoLogica.consultarDestinos();
-		return "listaDestinos?faces-redirect=true";
-	}
-
-	public void eliminar() {
-		destinoLogica.eliminarDestino(eliminarDestino);
-		destino = destinoLogica.consultarDestinos();
-	}
-
-	public void inicializarNuevo() {
-		crearDestino = new Destino();
-		try {
-	        FacesContext.getCurrentInstance().getExternalContext().redirect("MYSERVERADDRESS" + "/destino/crearDestino?faces-redirect=true");
-	    } catch (IOException ex) {
-	    }
-	}
-
-	public List<Destino> getDestino() {
+	public Destino getDestino() {
 		return destino;
 	}
 
-	public void setDestino(List<Destino> destino) {
+	public void setDestino(Destino destino) {
 		this.destino = destino;
 	}
 
-	public Destino getCrearDestino() {
-		return crearDestino;
+	private DestinoLogica destinoLogica = new DestinoLogica();
+
+	private List<Destino> destinos = null;
+	
+	public List<Destino> getDestinos() {
+		if(this.destinos == null) {
+			this.destinos = destinoLogica.consultarDestinos();
+		}
+		return destinos;
 	}
 
-	public void setCrearDestino(Destino crearDestino) {
-		this.crearDestino = crearDestino;
+	public void setDestinos(List<Destino> destinos) {
+		this.destinos = destinos;
 	}
 
-	public Destino getActualizarDestino() {
-		return actualizarDestino;
+	public void guardar() {
+		if(this.destino.getId() == 0) {			
+			destinoLogica.crearDestino(this.destino);
+		} 
+		else 
+		{
+			destinoLogica.actualizarDestino(this.destino);
+		}
+		destinos = destinoLogica.consultarDestinos();
+		this.destino = new Destino();
 	}
-
-	public void setActualizarDestino(Destino actualizarDestino) {
-		this.actualizarDestino = actualizarDestino;
+	
+	public void editar(int id) {
+		this.destino = destinoLogica.consultarDestinoPorId(id);
 	}
-
-	public Destino getEliminarDestino() {
-		return eliminarDestino;
+	
+	public void eliminar(int id) {
+		boolean r = destinoLogica.eliminarDestino(destinoLogica.consultarDestinoPorId(id));
 	}
-
-	public void setEliminarDestino(Destino eliminarDestino) {
-		this.eliminarDestino = eliminarDestino;
-	}
-
 }

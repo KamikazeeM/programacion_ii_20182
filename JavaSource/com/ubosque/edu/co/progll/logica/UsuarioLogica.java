@@ -38,6 +38,10 @@ public class UsuarioLogica {
 		return (Usuario) baseFachada.buscarPorId(Usuario.class, id);
 	}
 	
+	public Usuario consultarUsuarioPorUsuario(String usuario) {
+		return (Usuario) usuarioFachada.obtenerPorUsuario(usuario);
+	}
+	
 	public boolean actualizarUsuario(Usuario usuarioAActualizar) {
 		return baseFachada.update(usuarioAActualizar);
 	}

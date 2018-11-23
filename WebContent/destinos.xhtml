@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/_layout.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:messages id="messages" />
+
+			<p:fieldset legend="Nuevo Destinatario">
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="Nombres" for="name" />
+					<p:inputText id="name" value="#{destinoMB.destino.nombres}"
+						required="true" requiredMessage="Nombre obrigatório">
+					</p:inputText>
+					
+					<p:outputLabel value="Apellidos" for="lastname" />
+					<p:inputText id="lastname" value="#{destinoMB.destino.apellidos}"
+						required="true" requiredMessage="Apellidos obrigatório">
+					</p:inputText>
+					
+					<p:outputLabel value="Area" for="area" />
+					<p:inputText id="area" value="#{destinoMB.destino.area}">
+					</p:inputText>
+					
+					<p:outputLabel value="Correo" for="email" />
+					<p:inputText id="email" value="#{destinoMB.destino.correo}">
+					</p:inputText>
+
+				</p:panelGrid>
+
+			</p:fieldset>
+			<p:commandButton styleClass="mt-2 btn btn-primary" value="Guardar"
+				action="#{destinoMB.guardar}" process="@form"
+				update="@form :formDestinos:destinos" />
+
+		</h:form>
+		<h:form id="formDestinos" styleClass="mt-2">
+			<p:dataTable value="#{destinoMB.destinos}" var="item" id="destinos"
+				paginator="true" rows="5">
+
+				<f:facet name="header">Destinos</f:facet>
+				<p:column headerText="Nombres">
+					<p:outputLabel value="#{item.nombres}" />
+				</p:column>
+
+				<p:column headerText="Apellidos">
+					<p:outputLabel value="#{item.apellidos}" />
+				</p:column>
+
+				<p:column headerText="Area">
+					<p:outputLabel value="#{item.area}" />
+				</p:column>
+
+				<p:column headerText="Correo">
+					<p:outputLabel value="#{item.correo}" />
+				</p:column>
+				
+				<p:column headerText="Editar" width="80">
+					<h:commandLink styleClass="btn btn-info" value="Editar" action="#{destinoMB.editar(item.id)}" />
+				</p:column>
+
+				<p:column headerText="Eliminar" width="80">
+					<h:commandLink styleClass="btn btn-danger" value="Eliminar" 
+					action="#{destinoMB.eliminar(item.id)}" update="@form :formDestinos:destinos"
+						process="@form" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

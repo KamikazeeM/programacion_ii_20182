@@ -3,9 +3,11 @@ package com.ubosque.edu.co.progll.mb;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import com.ubosque.edu.co.progll.logica.UsuarioLogica;
 import com.ubosque.edu.co.progll.modelo.Usuario;
+import com.ubosque.edu.co.progll.util.SessionUtils;
 
 @ManagedBean
 @ViewScoped
@@ -26,7 +28,8 @@ public class LoginMB {
 		boolean existe = new UsuarioLogica()
 							.existe(this.getUsuario().getUsuario(), this.getUsuario().getContrasena());
 		if(existe) {
-			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("username", this.usuario.getUsuario());
 			return "index?faces-redirect=true";
 		}	
 		
@@ -36,8 +39,8 @@ public class LoginMB {
 	}
 	
 	public String logout() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		HttpSession session = SessionUtils.getSession();
+		session.invalidate();
 		return "login?faces-redirect=true";
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.ubosque.edu.co.progll.dao.InterfazBaseDAOFachada;
 import com.ubosque.edu.co.progll.delegado.BaseDelegado;
 import com.ubosque.edu.co.progll.modelo.Destino;
+import com.ubosque.edu.co.progll.modelo.Documento;
 
 public class DestinoLogica {
 	
@@ -23,6 +24,10 @@ public class DestinoLogica {
 	
 	public List<Destino> consultarDestinos() {
 		return destinoFachada.read(Destino.class);
+	}
+	
+	public Destino consultarDestinoPorId(int id) {
+		return (Destino) destinoFachada.buscarPorId(Destino.class, id);
 	}
 	
 	public boolean actualizarDestino(Destino destinoAActualizar) {

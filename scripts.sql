@@ -59,9 +59,11 @@ create table documento (
 );
 
 
-insert into usuario values(null, 'rgarcia', '420F1BEE798DCADD0868AB9D05157C8B5F054D4F66EB7267E604998763A3EC21', null); 
+insert into usuario values(null, 'rgarcia', '420F1BEE798DCADD0868AB9D05157C8B5F054D4F66EB7267E604998763A3EC21', 1); 
+insert into usuario values(null, 'santafe', '420F1BEE798DCADD0868AB9D05157C8B5F054D4F66EB7267E604998763A3EC21', 2);
 insert into asunto values(null, 'Incapacidad'); 
 insert into rol values(null, 'administrador'); 
+insert into rol values(null, 'Detinatario'); 
 insert into permiso values(null, 'administrarDestinos'); 
 insert into rol_permiso values(null, (select id from rol where nombre = 'administrador'),(select id from permiso where nombre = 'administrarDestinos'));
 

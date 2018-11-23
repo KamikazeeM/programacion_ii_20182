@@ -7,6 +7,7 @@
 
 <ui:composition template="/_layout.xhtml">
 	<ui:define name="content">
+		
 		<h:form>
 			<p:messages id="messages" />
 
@@ -29,7 +30,8 @@
 						pattern="dd/MM/yyyy" timeZone="-05:00" mask="true" />
 
 					<p:outputLabel value="Asunto" for="asunto" />
-					<p:selectOneMenu id="asunto" value="#{documentoMB.documento.asuntoId}">
+					<p:selectOneMenu id="asunto"
+						value="#{documentoMB.documento.asuntoId}">
 						<f:selectItems value="#{documentoMB.asuntos}" var="asunto"
 							itemLabel="#{asunto.nombre}" itemValue="#{asunto.id}" />
 					</p:selectOneMenu>
@@ -39,9 +41,10 @@
 					</p:inputText>
 
 					<p:outputLabel value="Destinatario" for="recipient" />
-					<p:selectOneMenu id="recipient" value="#{documentoMB.documento.usuarioId}">
-						<f:selectItems value="#{documentoMB.usuarios}" var="user"
-							itemLabel="#{user.usuario}" itemValue="#{user.id}" />
+					<p:selectOneMenu id="recipient"
+						value="#{documentoMB.documento.usuarioId}">
+						<f:selectItems value="#{documentoMB.destinos}" var="user"
+							itemLabel="#{user.nombres}" itemValue="#{user.id}" />
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Comentarios:" for="comment" />
@@ -52,15 +55,17 @@
 					</p:inputTextarea>
 
 					<p:outputLabel value="Radicado" for="numR" />
-					<p:inputNumber id="numR" decimalPlaces="0" value="#{documentoMB.documento.numeroRadicado}" >
+					<p:inputNumber id="numR" decimalPlaces="0"
+						value="#{documentoMB.documento.numeroRadicado}">
 					</p:inputNumber>
 
 				</p:panelGrid>
 
 			</p:fieldset>
-			<p:commandButton styleClass="mt-2 btn btn-primary" value="Guardar" action="#{documentoMB.guardar}"
-				process="@form" update="@form :formDocumentos:documentos" />
-				
+			<p:commandButton styleClass="mt-2 btn btn-primary" value="Guardar"
+				action="#{documentoMB.guardar}" process="@form"
+				update="@form :formDocumentos:documentos" />
+
 		</h:form>
 		<h:form id="formDocumentos" styleClass="mt-2">
 			<p:dataTable value="#{documentoMB.documentos}" var="item"
@@ -68,29 +73,30 @@
 
 				<f:facet name="header">Documentos</f:facet>
 				<p:column headerText="Título" sortBy="#{item.titulo}">
-					<h:outputText value="#{item.titulo}" />	
+					<h:outputText value="#{item.titulo}" />
 				</p:column>
-				
-				<p:column headerText="Fecha Documento" sortBy="#{item.fechaDocumento}">
+
+				<p:column headerText="Fecha Documento"
+					sortBy="#{item.fechaDocumento}">
 					<h:outputText value="#{item.fechaDocumento}">
-						<f:convertDateTime pattern="dd/MM/yyyy"
-							timeZone="-05:00" />
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="-05:00" />
 					</h:outputText>
 				</p:column>
-				
+
 				<p:column headerText="Fecha Radicado" sortBy="#{item.fechaRadicado}">
 					<h:outputText value="#{item.fechaRadicado}">
-						<f:convertDateTime pattern="dd/MM/yyyy"
-							timeZone="-05:00" />
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="-05:00" />
 					</h:outputText>
 				</p:column>
-				
+
 				<p:column headerText="Asunto" sortBy="#{item.asuntoId}">
-					<h:outputText value="#{documentoMB.getAsuntoById(item.asuntoId).nombre}" />
+					<h:outputText
+						value="#{documentoMB.getAsuntoById(item.asuntoId).nombre}" />
 				</p:column>
-				
-				<p:column headerText="Usuario" sortBy="#{item.usuarioId}">
-					<h:outputText value="#{documentoMB.getUsuarioById(item.usuarioId).usuario}" />
+
+				<p:column headerText="Destinatario" sortBy="#{item.usuarioId}">
+					<h:outputText
+						value="#{documentoMB.getDestinoById(item.usuarioId).nombres}" />
 				</p:column>
 
 				<p:column headerText="Radicado" sortBy="#{item.numeroRadicado}">
@@ -100,12 +106,14 @@
 				</p:column>
 
 				<p:column headerText="Editar" width="80">
-					<h:commandLink styleClass="btn btn-info" value="Editar" action="#{documentoMB.editar(item.id)}" />
+					<h:commandLink styleClass="btn btn-info" value="Editar"
+						action="#{documentoMB.editar(item.id)}" />
 				</p:column>
 
 				<p:column headerText="Eliminar" width="80">
-					<h:commandLink styleClass="btn btn-danger" value="Eliminar" 
-					action="#{documentoMB.eliminar(item.id)}" update="@form growl" process="@this" />
+					<h:commandLink styleClass="btn btn-danger" value="Eliminar"
+						action="#{documentoMB.eliminar(item.id)}" update="@form :formDocumentos:documentos"
+						process="@form" />
 				</p:column>
 
 			</p:dataTable>

@@ -20,11 +20,13 @@
 						<p:menu>
 							<p:submenu label="Opciones">
 								<p:menuitem value="Documentos" url="/documentos.xhtml"
-									update="messages" icon="pi pi-save" />
-								<p:menuitem value="Asuntos" url="/documentos.xhtml"
-									update="messages" icon="pi pi-save" rendered="#{menuMB.usuario.rolId == 1}"/>
-								<p:menuitem value="Destinos" url="/documentos.xhtml"
-									update="messages" icon="pi pi-save" />
+									update="messages" icon="pi pi-save" rendered="#{menuMB.user.rolId eq 1}" />
+								<p:menuitem value="Documentos" url="/listaDocumentos.xhtml"
+									update="messages" icon="pi pi-save" rendered="#{menuMB.user.rolId eq 2}" />
+								<p:menuitem value="Asuntos" url="/asuntos.xhtml"
+									update="messages" icon="pi pi-save" rendered="#{menuMB.user.rolId eq 1}"/>
+								<p:menuitem value="Destinos" url="/destinos.xhtml"
+									update="messages" icon="pi pi-save" rendered="#{menuMB.user.rolId eq 1}"/>
 							</p:submenu>
 							<p:submenu label="Perfil">
 								<p:menuitem value="Cerrar Sesion" action="#{loginMB.logout()}"

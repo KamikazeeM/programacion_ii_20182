@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/_layout.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:messages id="messages" />
+
+			<p:fieldset legend="Nuevo Asunto">
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="Nombre:" for="title" />
+					<p:inputText id="title" value="#{asuntoMB.asunto.nombre}"
+						required="true" requiredMessage="Nombre obrigatório">
+					</p:inputText>
+
+				</p:panelGrid>
+
+			</p:fieldset>
+			<p:commandButton styleClass="mt-2 btn btn-primary" value="Guardar" action="#{asuntoMB.guardar}"
+				process="@form" update="@form :formAsuntos:asuntos" />
+				
+		</h:form>
+		<h:form id="formAsuntos" styleClass="mt-2">
+			<p:dataTable value="#{documentoMB.asuntos}" var="item"
+				id="asuntos" paginator="true" rows="5">
+
+				<f:facet name="header">Asuntos</f:facet>
+				<p:column headerText="Nombre" sortBy="#{item.nombre}">
+					<h:outputText value="#{item.nombre}" />	
+				</p:column>
+			
+				<p:column headerText="Editar" width="80">
+					<h:commandLink styleClass="btn btn-info" value="Editar" action="#{asuntoMB.editar(item.id)}" />
+				</p:column>
+
+				<p:column headerText="Eliminar" width="80">
+					<h:commandLink styleClass="btn btn-danger" value="Eliminar" 
+					action="#{asuntoMB.eliminar(item.id)}" update="@form :formDocumentos:documentos"
+						process="@form" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
