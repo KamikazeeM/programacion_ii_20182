@@ -14,6 +14,11 @@ import com.ubosque.edu.co.progll.modelo.Asunto;
 
 @ManagedBean
 @ViewScoped
+/**
+ * Representa el bean para la vista de asuntos
+ * @author kamikazee
+ *
+ */
 public class AsuntoMB {
 	
 	private Asunto asunto = new Asunto();

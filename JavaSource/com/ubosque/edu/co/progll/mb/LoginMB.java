@@ -11,6 +11,11 @@ import com.ubosque.edu.co.progll.util.SessionUtils;
 
 @ManagedBean
 @ViewScoped
+/**
+ * Representa el bean para la vista de login
+ * @author kamikazee
+ *
+ */
 public class LoginMB {
 
 	private Usuario usuario = new Usuario();

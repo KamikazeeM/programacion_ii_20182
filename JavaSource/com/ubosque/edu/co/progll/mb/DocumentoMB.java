@@ -20,6 +20,11 @@ import javax.faces.application.FacesMessage;
 
 @ManagedBean
 @ViewScoped
+/**
+ * Representa el bean para la vista de documentos
+ * @author kamikazee
+ *
+ */
 public class DocumentoMB {
 
 	public DocumentoMB() {

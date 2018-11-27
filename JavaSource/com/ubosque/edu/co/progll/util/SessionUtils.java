@@ -4,6 +4,11 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Utilidad que se encarga de la manipulación de las sessiones
+ * @author kamikazee
+ *
+ */
 public class SessionUtils {
 
 	public static HttpSession getSession() {

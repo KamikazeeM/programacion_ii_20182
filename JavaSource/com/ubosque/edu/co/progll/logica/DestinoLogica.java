@@ -7,6 +7,11 @@ import com.ubosque.edu.co.progll.delegado.BaseDelegado;
 import com.ubosque.edu.co.progll.modelo.Destino;
 import com.ubosque.edu.co.progll.modelo.Documento;
 
+/**
+ * Representa la logica para el modelo Destino
+ * @author kamikazee
+ *
+ */
 public class DestinoLogica {
 	
 	private InterfazBaseDAOFachada destinoFachada;

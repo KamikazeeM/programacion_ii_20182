@@ -9,6 +9,11 @@ import com.ubosque.edu.co.progll.util.SessionUtils;
 
 @ManagedBean
 @ViewScoped
+/**
+ * Representa el bean para la vista de layout
+ * @author kamikazee
+ *
+ */
 public class MenuMB {
 	
 	private UsuarioLogica usuarioLogica = new UsuarioLogica();

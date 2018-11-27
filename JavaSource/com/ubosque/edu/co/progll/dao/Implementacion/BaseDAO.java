@@ -8,6 +8,12 @@ import org.hibernate.Session;
 import com.ubosque.edu.co.progll.dao.InterfazBaseDAOFachada;
 import com.ubosque.edu.co.progll.util.HibernateUtilidad;
 
+/**
+ * Clase base que implementa la interfazBase y define sus metodos haciendo uso de hibernate. 
+ * @author kamikazee
+ *
+ * @param <T>
+ */
 public class BaseDAO<T> implements InterfazBaseDAOFachada<T> {
 
 	public BaseDAO() {

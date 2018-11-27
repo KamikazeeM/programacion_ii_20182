@@ -9,6 +9,11 @@ import com.ubosque.edu.co.progll.delegado.UsuarioDelegado;
 import com.ubosque.edu.co.progll.modelo.Usuario;
 import com.ubosque.edu.co.progll.modelo.Usuario;
 
+/**
+ * Representa la logica para el modelo Usuario
+ * @author kamikazee
+ *
+ */
 public class UsuarioLogica {
 	
 	private InterfazUsuarioDAOFachada usuarioFachada;

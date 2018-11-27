@@ -2,6 +2,11 @@ package com.ubosque.edu.co.progll.dao;
 
 import java.util.List;
 
+/**
+ * Define el comportamiento de un crup
+ * @author kamikazee
+ *
+ */
 public interface InterfazBaseDAOFachada<T> {
 	
 	public boolean create(T modeloAInsertar);

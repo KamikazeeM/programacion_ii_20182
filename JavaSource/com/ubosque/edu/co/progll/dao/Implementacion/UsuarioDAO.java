@@ -10,6 +10,12 @@ import com.ubosque.edu.co.progll.util.Security;
 import com.ubosque.edu.co.progll.dao.InterfazUsuarioDAOFachada;
 import com.ubosque.edu.co.progll.modelo.Usuario;
 
+/**
+ * Clase usuario dao que implementa la InterfazUsuarioDAOFachada  y define sus metodos adicionales. 
+ * @author kamikazee
+ *
+ * @param <T>
+ */
 public class UsuarioDAO extends BaseDAO<Usuario> implements InterfazUsuarioDAOFachada {
 
 	public UsuarioDAO() {

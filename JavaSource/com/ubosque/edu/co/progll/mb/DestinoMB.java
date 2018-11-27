@@ -14,6 +14,11 @@ import com.ubosque.edu.co.progll.modelo.Destino;
 
 @ManagedBean
 @ViewScoped
+/**
+ * Representa el bean para la vista de destinos
+ * @author kamikazee
+ *
+ */
 public class DestinoMB {
 	
 	private Destino destino = new Destino();

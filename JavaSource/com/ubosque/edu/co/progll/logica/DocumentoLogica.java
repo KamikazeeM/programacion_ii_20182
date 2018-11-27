@@ -7,6 +7,11 @@ import com.ubosque.edu.co.progll.delegado.BaseDelegado;
 import com.ubosque.edu.co.progll.modelo.Documento;
 import com.ubosque.edu.co.progll.modelo.Documento;
 
+/**
+ * Representa la logica para el modelo Documento
+ * @author kamikazee
+ *
+ */
 public class DocumentoLogica {
 	
 	private InterfazBaseDAOFachada documentoFachada;

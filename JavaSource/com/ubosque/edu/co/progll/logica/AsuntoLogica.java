@@ -5,7 +5,11 @@ import java.util.List;
 import com.ubosque.edu.co.progll.dao.InterfazBaseDAOFachada;
 import com.ubosque.edu.co.progll.delegado.BaseDelegado;
 import com.ubosque.edu.co.progll.modelo.Asunto;
-
+/**
+ * Representa la logica para el modelo Asunto
+ * @author kamikazee
+ *
+ */
 public class AsuntoLogica {
 	
 	private InterfazBaseDAOFachada asuntoFachada;
